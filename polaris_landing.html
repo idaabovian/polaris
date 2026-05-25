@@ -1147,13 +1147,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="parentPhone">📱 Номер телефона *</label>
+                    <label for="parentPhone">Контактный номер *</label>
                     <input type="tel" id="parentPhone" name="parentPhone" placeholder="+374 44 171579" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="parentTelegram">💬 Telegram (@username) *</label>
-                    <input type="text" id="parentTelegram" name="parentTelegram" placeholder="@example" required>
                 </div>
 
                 <div class="form-buttons">
@@ -1221,7 +1216,6 @@
             const childAge = document.getElementById('childAge').value;
             const courseName = document.getElementById('courseName').value;
             const parentPhone = document.getElementById('parentPhone').value;
-            const parentTelegram = document.getElementById('parentTelegram').value;
 
             // Проверяем обязательные поля
             if (!childName || !childAge) {
@@ -1244,14 +1238,9 @@
                 return null;
             }
 
-            // Проверяем контакты
+            // Проверяем номер телефона
             if (!parentPhone) {
-                alert('Пожалуйста, введи номер телефона');
-                return null;
-            }
-
-            if (!parentTelegram) {
-                alert('Пожалуйста, введи свой Telegram');
+                alert('Пожалуйста, введи контактный номер');
                 return null;
             }
 
@@ -1260,9 +1249,7 @@
             message += `👧 Имя ребёнка: ${childName}\n`;
             message += `🎂 Возраст: ${childAge} лет\n`;
             message += `📚 Курс: ${courseName}\n`;
-            message += `\n📞 Способ связи:\n`;
-            message += `📱 Телефон: ${parentPhone}\n`;
-            message += `💬 Telegram: ${parentTelegram}\n`;
+            message += `📱 Контактный номер: ${parentPhone}\n`;
 
             return message;
         }
@@ -1290,7 +1277,6 @@
             const childAge = document.getElementById('childAge').value;
             const courseName = document.getElementById('courseName').value;
             const parentPhone = document.getElementById('parentPhone').value;
-            const parentTelegram = document.getElementById('parentTelegram').value;
 
             // Проверяем обязательные поля
             if (!childName || !childAge) {
@@ -1304,12 +1290,7 @@
             }
 
             if (!parentPhone) {
-                alert('Пожалуйста, введи номер телефона');
-                return;
-            }
-
-            if (!parentTelegram) {
-                alert('Пожалуйста, введи свой Telegram');
+                alert('Пожалуйста, введи контактный номер');
                 return;
             }
 
@@ -1330,9 +1311,8 @@
                         childName,
                         childAge,
                         courseName,
-                        contactType: 'phone_and_telegram',
-                        parentPhone,
-                        parentTelegram
+                        contactType: 'phone',
+                        parentPhone
                     })
                 });
 

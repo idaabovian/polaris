@@ -1147,28 +1147,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="contactType">Способ связи *</label>
-                    <select id="contactType" name="contactType" required onchange="updateContactField()">
-                        <option value="">-- Выбери способ связи --</option>
-                        <option value="phone">📱 Телефон</option>
-                        <option value="telegram">💬 Telegram</option>
-                        <option value="instagram">📸 Instagram</option>
-                    </select>
-                </div>
-
-                <div class="form-group" id="phoneField" style="display: none;">
-                    <label for="parentPhone">Телефон родителя *</label>
-                    <input type="tel" id="parentPhone" name="parentPhone" placeholder="+374 44 171579">
-                </div>
-
-                <div class="form-group" id="telegramField" style="display: none;">
-                    <label for="parentTelegram">Telegram (@username) *</label>
-                    <input type="text" id="parentTelegram" name="parentTelegram" placeholder="@example">
-                </div>
-
-                <div class="form-group" id="instagramField" style="display: none;">
-                    <label for="parentInstagram">Instagram (@username) *</label>
-                    <input type="text" id="parentInstagram" name="parentInstagram" placeholder="@example">
+                    <label for="parentTelegram">💬 Telegram (@username) *</label>
+                    <input type="text" id="parentTelegram" name="parentTelegram" placeholder="@example" required>
                 </div>
 
                 <div class="form-buttons">
@@ -1230,35 +1210,12 @@
             modal.classList.remove('show');
         }
 
-        function updateContactField() {
-            const contactType = document.getElementById('contactType').value;
-            const phoneField = document.getElementById('phoneField');
-            const telegramField = document.getElementById('telegramField');
-            const instagramField = document.getElementById('instagramField');
-
-            // Скрываем все поля
-            phoneField.style.display = 'none';
-            telegramField.style.display = 'none';
-            instagramField.style.display = 'none';
-
-            // Показываем выбранное поле
-            if (contactType === 'phone') {
-                phoneField.style.display = 'block';
-            } else if (contactType === 'telegram') {
-                telegramField.style.display = 'block';
-            } else if (contactType === 'instagram') {
-                instagramField.style.display = 'block';
-            }
-        }
 
         function getFormMessage() {
             const childName = document.getElementById('childName').value;
             const childAge = document.getElementById('childAge').value;
             const courseName = document.getElementById('courseName').value;
-            const contactType = document.getElementById('contactType').value;
-            const parentPhone = document.getElementById('parentPhone').value;
             const parentTelegram = document.getElementById('parentTelegram').value;
-            const parentInstagram = document.getElementById('parentInstagram').value;
 
             // Проверяем обязательные поля
             if (!childName || !childAge) {
@@ -1281,21 +1238,9 @@
                 return null;
             }
 
-            // Проверяем способ связи
-            if (!contactType) {
-                alert('Пожалуйста, выбери способ связи');
-                return null;
-            }
-
-            // Проверяем контакт в зависимости от способа
-            if (contactType === 'phone' && !parentPhone) {
-                alert('Пожалуйста, введи номер телефона');
-                return null;
-            } else if (contactType === 'telegram' && !parentTelegram) {
+            // Проверяем Telegram
+            if (!parentTelegram) {
                 alert('Пожалуйста, введи свой Telegram');
-                return null;
-            } else if (contactType === 'instagram' && !parentInstagram) {
-                alert('Пожалуйста, введи свой Instagram');
                 return null;
             }
 
@@ -1304,15 +1249,7 @@
             message += `👧 Имя ребёнка: ${childName}\n`;
             message += `🎂 Возраст: ${childAge} лет\n`;
             message += `📚 Курс: ${courseName}\n`;
-
-            message += `\n📞 Способ связи:\n`;
-            if (contactType === 'phone') {
-                message += `📱 Телефон: ${parentPhone}\n`;
-            } else if (contactType === 'telegram') {
-                message += `💬 Telegram: ${parentTelegram}\n`;
-            } else if (contactType === 'instagram') {
-                message += `📸 Instagram: ${parentInstagram}\n`;
-            }
+            message += `💬 Telegram: ${parentTelegram}\n`;
 
             return message;
         }
@@ -1339,10 +1276,7 @@
             const childName = document.getElementById('childName').value;
             const childAge = document.getElementById('childAge').value;
             const courseName = document.getElementById('courseName').value;
-            const contactType = document.getElementById('contactType').value;
-            const parentPhone = document.getElementById('parentPhone').value;
             const parentTelegram = document.getElementById('parentTelegram').value;
-            const parentInstagram = document.getElementById('parentInstagram').value;
 
             // Проверяем обязательные поля
             if (!childName || !childAge) {
@@ -1355,20 +1289,8 @@
                 return;
             }
 
-            if (!contactType) {
-                alert('Пожалуйста, выбери способ связи');
-                return;
-            }
-
-            // Проверяем контакт в зависимости от способа
-            if (contactType === 'phone' && !parentPhone) {
-                alert('Пожалуйста, введи номер телефона');
-                return;
-            } else if (contactType === 'telegram' && !parentTelegram) {
+            if (!parentTelegram) {
                 alert('Пожалуйста, введи свой Telegram');
-                return;
-            } else if (contactType === 'instagram' && !parentInstagram) {
-                alert('Пожалуйста, введи свой Instagram');
                 return;
             }
 
@@ -1379,7 +1301,7 @@
             submitBtn.textContent = 'Отправляю...';
 
             try {
-                // Отправляем запрос на сервер
+                // Отправляем запрос на сервер (всегда используем telegram как способ связи)
                 const response = await fetch('/api/send-message', {
                     method: 'POST',
                     headers: {
@@ -1389,10 +1311,8 @@
                         childName,
                         childAge,
                         courseName,
-                        contactType,
-                        parentPhone: parentPhone || null,
-                        parentTelegram: parentTelegram || null,
-                        parentInstagram: parentInstagram || null
+                        contactType: 'telegram',
+                        parentTelegram
                     })
                 });
 
@@ -1410,7 +1330,7 @@
                     submitBtn.textContent = originalText;
                 }
             } catch (error) {
-                alert('❌ Ошибка: ' + error.message + '\n\nПожалуйста, попробуй позже или напиши нам в Telegram');
+                alert('❌ Ошибка: ' + error.message + '\n\nПожалуйста, попробуй позже');
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
             }

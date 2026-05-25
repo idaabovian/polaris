@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ПОЛЯРИС | Детский центр развития в Ереване</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --accent: #ec4899;
+            --accent-light: #f472b6;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-gray: #64748b;
+            --border: #e2e8f0;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: var(--bg-light);
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav a {
+            color: var(--text-gray);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .cta-button {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .cta-button-accent {
+            background: var(--accent);
+        }
+
+        .cta-button-accent:hover {
+            background: var(--accent-light);
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(236, 72, 153, 0.1);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* SECTION GENERAL */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            background: var(--bg-white);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .about-list li {
+            padding: 0.75rem 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .about-list li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .info-box {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* COURSES GRID */
+        .courses {
+            background: var(--bg-white);
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .course-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .course-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .course-card h3 {
+            margin-bottom: 1rem;
+        }
+
+        .course-card p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .course-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-top: 1.5rem;
+        }
+
+        .course-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .course-meta span::before {
+            content: '•';
+            margin-right: 0.5rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .price {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* PRICING TABLE */
+        .pricing {
+            background: linear-gradient(135deg, var(--bg-light) 0%, white 100%);
+        }
+
+        .pricing-table {
+            overflow-x: auto;
+            margin-top: 2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:hover {
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* BENEFITS SECTION */
+        .benefits {
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-item {
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .benefit-item:hover p {
+            color: white;
+        }
+
+        /* CONTACT SECTION */
+        .contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* CTA SECTION */
+        .cta-section {
+            background: white;
+            text-align: center;
+        }
+
+        .cta-large {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            display: inline-block;
+        }
+
+        /* AGE GROUPS */
+        .age-groups {
+            background: var(--bg-light);
+        }
+
+        .age-groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .age-group-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+        }
+
+        .age-group-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+        }
+
+        .age-badge {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .age-group-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .age-group-card li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+        }
+
+        .age-group-card li::before {
+            content: '→';
+            margin-right: 0.75rem;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav a {
+                margin: 0.5rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons button {
+                width: 100%;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+                margin: 0 0.75rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ANIMATION */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .course-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .course-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .course-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .course-card:nth-child(n+4) {
+            animation-delay: 0.3s;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .form-buttons button {
+            flex: 1;
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-cancel {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border);
+        }
+
+        .btn-cancel:hover {
+            background: var(--border);
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <a href="#" class="logo">ПОЛЯРИС<span>.</span></a>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <a href="#courses">Курсы</a>
+                <a href="#pricing">Цены</a>
+                <a href="#contact">Контакты</a>
+                <button class="cta-button" onclick="openModal()">Записаться</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Детский центр развития ПОЛЯРИС</h1>
+            <p class="subtitle">Все направления под одной крышей: английский, подготовка к школе, гимнастика и театр</p>
+            <div class="hero-buttons">
+                <button class="cta-button" onclick="openModal()">Записаться</button>
+                <button class="cta-button cta-button-accent" onclick="scrollToCourses()">Все курсы</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>О центре ПОЛЯРИС</h3>
+                    <p>Мы создали пространство, где каждый ребёнок находит себя — будь то литература, спорт, языки или театр.</p>
+                    <p>Наша философия: маленькие группы, внимание к каждому, опытные педагоги и результаты, которые видны сразу.</p>
+                    <ul class="about-list">
+                        <li>Места ограничены — индивидуальный подход</li>
+                        <li>Удобное расположение в районе Арабкир</li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="info-box">
+                        <strong>📍 Адрес</strong>
+                        Арабкир, ул. Сундукяна, 17 (недалеко от ТЦ РИО)
+                    </div>
+                    <div class="info-box" style="margin-top: 1rem;">
+                        <strong>📞 Контакты</strong>
+                        <p>Instagram: <a href="https://instagram.com/polaris.yerevan" target="_blank" style="color: var(--primary); text-decoration: none;">@polaris.yerevan</a></p>
+                        <p>Telegram: <a href="https://t.me/sensey1983" target="_blank" style="color: var(--primary); text-decoration: none;">@sensey1983</a></p>
+                        <p><a href="https://t.me/polariserevan" target="_blank" style="color: var(--primary); text-decoration: none;">t.me/polariserevan</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COURSES -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <h2>📚 Курсы и направления</h2>
+
+            <div class="courses-grid">
+                <!-- Английский -->
+                <div class="course-card">
+                    <div class="course-icon">🌍</div>
+                    <h3>Английский язык</h3>
+                    <p>Для детей 8–12 лет. Преподаватель миссис Женя. Коммуникативный подход и практика в общении.</p>
+                    <div class="course-meta">
+                        <span>Пн, Ср — 18:00–19:00</span>
+                        <span>Группа 4–8 человек</span>
+                    </div>
+                    <div class="price">25 000 ₽ / 8 занятий</div>
+                </div>
+
+                <!-- Подготовка к школе -->
+                <div class="course-card">
+                    <div class="course-icon">📖</div>
+                    <h3>Подготовка к школе</h3>
+                    <p>Возраст 6–7 лет. Спокойный и уверенный старт в 1 класс. Дневные и вечерние группы.</p>
+                    <div class="course-meta">
+                        <span>Дневное: Вт, Пт — 14:30–15:50</span>
+                        <span>Вечернее: Ср, Пт — 18:00–19:20</span>
+                    </div>
+                    <div class="price">45 000 ₽ / 8 занятий</div>
+                </div>
+
+                <!-- Гимнастика -->
+                <div class="course-card">
+                    <div class="course-icon">🤸</div>
+                    <h3>Спортивная гимнастика</h3>
+                    <p>Две группы: для малышей 4–8 лет и для детей 7–10 лет. Развитие координации, силы, гибкости.</p>
+                    <div class="course-meta">
+                        <span>4–8 лет: Вт, Пт — 16:00–17:00</span>
+                        <span>7–10 лет: Ср 16:00, Пт 15:00</span>
+                    </div>
+                    <div class="price">25 000 ₽ / 8 занятий</div>
+                </div>
+
+                <!-- Театральная студия -->
+                <div class="course-card">
+                    <div class="course-icon">🎭</div>
+                    <h3>Театральная студия</h3>
+                    <p>Две группы (1.0 и 2.0). Развитие сценического мышления, творческих способностей, уверенности.</p>
+                    <div class="course-meta">
+                        <span>Ср, Пт — 19:00–20:00</span>
+                        <span>Два уровня подготовки</span>
+                    </div>
+                    <div class="price">25 000 ₽ / 8 занятий</div>
+                </div>
+
+                <!-- Театральный интенсив -->
+                <div class="course-card">
+                    <div class="course-icon">🎪</div>
+                    <h3>Театральный интенсив (лето)</h3>
+                    <p>Погружение в театральное искусство. Две возрастные группы с отдельным расписанием.</p>
+                    <div class="course-meta">
+                        <span><strong>📍 Интенсив 1</strong></span>
+                        <span>10–14 лет | Вт/Чт 18:30–20:30</span>
+                        <span>Со 2 по 23 июня (7 занятий)</span>
+                        <span style="margin-top: 0.75rem; border-top: 1px solid #e2e8f0; padding-top: 0.75rem;"><strong>📍 Интенсив 2</strong></span>
+                        <span>14–18 лет | Пн/Ср/Пт 18:30–20:30</span>
+                        <span>С 3 по 19 июня (8 занятий)</span>
+                    </div>
+                    <div class="price">45 000 ₽</div>
+                </div>
+
+                <!-- English Speaking Club -->
+                <div class="course-card">
+                    <div class="course-icon">💬</div>
+                    <h3>English Speaking Club</h3>
+                    <p>Для подростков 12+, уровень A2. Живая разговорная практика, актуальные темы, никаких учебников.</p>
+                    <div class="course-meta">
+                        <span>Сб — 18:00–19:20</span>
+                        <span>Маленькие группы</span>
+                    </div>
+                    <div class="price">25 000 ₽ / 4 занятия</div>
+                </div>
+
+                <!-- Математика -->
+                <div class="course-card">
+                    <div class="course-icon">🔢</div>
+                    <h3>Математика / ОГЭ</h3>
+                    <p>Подготовка к ОГЭ и углубленное изучение математики. Индивидуальный подход к каждому.</p>
+                    <div class="course-meta">
+                        <span>Сб — 12:00–13:20</span>
+                        <span>Все уровни подготовки</span>
+                    </div>
+                    <div class="price">35 000 ₽ / 8 занятий</div>
+                </div>
+
+                <!-- Летний лагерь -->
+                <div class="course-card">
+                    <div class="course-icon">☀️</div>
+                    <h3>Летний лагерь для младших ребят</h3>
+                    <p>Для детей 6–8 лет. Мышление и логика • Английский язык • Спортивная гимнастика • Общение и игры.</p>
+                    <div class="course-meta">
+                        <span>📅 8–19 июня</span>
+                        <span>🕛 12:00–16:00</span>
+                        <span style="margin-top: 0.75rem; border-top: 1px solid #e2e8f0; padding-top: 0.75rem;"><strong>Стоимость:</strong></span>
+                        <span>▫️ 1 неделя — 60 000 ₽</span>
+                        <span>▫️ 2 недели — 100 000 ₽</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AGE GROUPS -->
+    <section class="age-groups">
+        <div class="container">
+            <h2>👨‍👩‍👧‍👦 По возрастам</h2>
+
+            <div class="age-groups-grid">
+                <div class="age-group-card">
+                    <div class="age-badge">От 4 до 8 лет</div>
+                    <h4>Начало пути</h4>
+                    <ul>
+                        <li>Гимнастика</li>
+                        <li>Подготовка к школе</li>
+                        <li>Летний лагерь</li>
+                    </ul>
+                </div>
+
+                <div class="age-group-card">
+                    <div class="age-badge">От 8 до 12 лет</div>
+                    <h4>Активное развитие</h4>
+                    <ul>
+                        <li>Английский язык</li>
+                        <li>Театральная студия</li>
+                        <li>Спортивная гимнастика</li>
+                    </ul>
+                </div>
+
+                <div class="age-group-card">
+                    <div class="age-badge">От 12 до 18 лет</div>
+                    <h4>Профессионализм</h4>
+                    <ul>
+                        <li>English Speaking Club</li>
+                        <li>Театральный интенсив</li>
+                        <li>Математика / ОГЭ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>💰 Сводная таблица цен</h2>
+
+            <div class="pricing-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Направление</th>
+                            <th>Возраст</th>
+                            <th>Стоимость</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Пробное занятие</strong></td>
+                            <td>Любой курс</td>
+                            <td><strong>4 000 ₽</strong></td>
+                        </tr>
+                        <tr>
+                            <td>Английский язык</td>
+                            <td>8–12 лет</td>
+                            <td>25 000 ₽ / 8 занятий</td>
+                        </tr>
+                        <tr>
+                            <td>Подготовка к школе</td>
+                            <td>6–7 лет</td>
+                            <td>45 000 ₽ / 8 занятий</td>
+                        </tr>
+                        <tr>
+                            <td>Гимнастика (младшая)</td>
+                            <td>4–8 лет</td>
+                            <td>25 000 ₽ / 8 занятий</td>
+                        </tr>
+                        <tr>
+                            <td>Спортивная гимнастика</td>
+                            <td>7–10 лет</td>
+                            <td>25 000 ₽ / 8 занятий</td>
+                        </tr>
+                        <tr>
+                            <td>Театральная студия</td>
+                            <td>От 8 лет</td>
+                            <td>25 000 ₽ / 8 занятий</td>
+                        </tr>
+                        <tr>
+                            <td>Театральный интенсив</td>
+                            <td>10–14 / 14–18 лет</td>
+                            <td>45 000 ₽</td>
+                        </tr>
+                        <tr>
+                            <td>English Speaking Club</td>
+                            <td>12+ лет</td>
+                            <td>25 000 ₽ / 4 занятия</td>
+                        </tr>
+                        <tr>
+                            <td>Математика / ОГЭ</td>
+                            <td>От 12 лет</td>
+                            <td>35 000 ₽ / 8 занятий</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; padding: 2rem; background: white; border-radius: 12px; border-left: 4px solid var(--accent);">
+                <p style="color: var(--text-gray); margin-bottom: 1rem;">Запись строго обязательна — места ограничены!</p>
+                <button class="cta-button cta-button-accent" onclick="openModal()" style="font-size: 1.05rem; padding: 1rem 2rem;">Записаться на пробное занятие</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- BENEFITS -->
+    <section class="benefits">
+        <div class="container">
+            <h2>✅ Почему выбирают ПОЛЯРИС</h2>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">👥</div>
+                    <h4>Маленькие группы</h4>
+                    <p>Внимание к каждому ребёнку, индивидуальный подход</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎓</div>
+                    <h4>Опытные педагоги</h4>
+                    <p>Наши преподаватели работают с детьми более 4 лет</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏢</div>
+                    <h4>Всё под одной крышей</h4>
+                    <p>Языки, спорт, творчество и развитие в одном месте</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">📍</div>
+                    <h4>Район Арабкир</h4>
+                    <p>Удобное расположение на Арабкир, ул. Сундукяна, 17 (недалеко от ТЦ РИО)</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">💪</div>
+                    <h4>Результаты с первого месяца</h4>
+                    <p>Видимый прогресс в знаниях и навыках</p>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <h4>Пробное занятие за 4 000 ₽</h4>
+                    <p>Попробуйте бесплатно, прежде чем записаться</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Свяжитесь с нами</h2>
+
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>📍 Адрес</h4>
+                    <p>Арабкир, ул. Сундукяна, 17 (недалеко от ТЦ РИО)<br>Ереван, Армения</p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>📱 Контакты</h4>
+                    <p>Telegram: <a href="https://t.me/sensey1983" target="_blank">@sensey1983</a><br>
+                    Канал: <a href="https://t.me/polariserevan" target="_blank">t.me/polariserevan</a><br>
+                    Телефон: <a href="tel:+37444171579">+374 44 171579</a></p>
+                </div>
+
+                <div class="contact-item">
+                    <h4>📸 Instagram</h4>
+                    <p><a href="https://instagram.com/polaris.yerevan" target="_blank">@polaris.yerevan</a></p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 12px;">
+                <h3 style="margin-bottom: 1rem;">Готовы начать?</h3>
+                <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Пробное занятие на любой курс за 4 000 ₽</p>
+                <p style="opacity: 0.9; margin-bottom: 1rem;">Напишите нам в Telegram или Instagram и получите детали</p>
+                <a href="https://t.me/sensey1983" target="_blank" class="cta-button" style="background: white; color: var(--primary); font-weight: 600;">Написать в Telegram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Не пропустите — места ограничены!</h2>
+            <p style="font-size: 1.05rem; color: var(--text-gray); margin-bottom: 1.5rem;">
+                Присоединитесь к нашему сообществу родителей и узнайте, почему дети так любят ПОЛЯРИС
+            </p>
+            <button class="cta-button cta-large" onclick="openModal()">Записаться на пробный урок</button>
+        </div>
+    </section>
+
+    <!-- MODAL ЗАПИСЬ -->
+    <div id="registrationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Записаться на занятие</h2>
+            <form onsubmit="submitRegistration(event)">
+                <div class="form-group">
+                    <label for="childName">Имя ребёнка *</label>
+                    <input type="text" id="childName" name="childName" required placeholder="Например, Ева">
+                </div>
+
+                <div class="form-group">
+                    <label for="childAge">Возраст ребёнка *</label>
+                    <input type="number" id="childAge" name="childAge" required placeholder="6" min="3" max="18">
+                </div>
+
+                <div class="form-group" id="courseSelectGroup">
+                    <label for="courseName">Выбери курс *</label>
+                    <select id="courseName" name="courseName">
+                        <option value="">-- Выбери курс --</option>
+                        <option value="Английский язык">Английский язык (8-12 лет)</option>
+                        <option value="Подготовка к школе">Подготовка к школе (6-7 лет)</option>
+                        <option value="Гимнастика">Гимнастика (4-8 лет)</option>
+                        <option value="Спортивная гимнастика">Спортивная гимнастика (7-10 лет)</option>
+                        <option value="Театральная студия">Театральная студия</option>
+                        <option value="Театральный интенсив 1">Театральный интенсив (10-14 лет)</option>
+                        <option value="Театральный интенсив 2">Театральный интенсив (14-18 лет)</option>
+                        <option value="English Speaking Club">English Speaking Club (12+)</option>
+                        <option value="Математика / ОГЭ">Математика / ОГЭ</option>
+                        <option value="Летний лагерь для младших ребят">Летний лагерь (6-8 лет)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="courseTextGroup" style="display: none;">
+                    <label>Курс:</label>
+                    <div style="padding: 0.75rem; background: var(--bg-light); border-radius: 8px; color: var(--primary); font-weight: 600;" id="courseText"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactType">Способ связи *</label>
+                    <select id="contactType" name="contactType" required onchange="updateContactField()">
+                        <option value="">-- Выбери способ связи --</option>
+                        <option value="phone">📱 Телефон</option>
+                        <option value="telegram">💬 Telegram</option>
+                        <option value="instagram">📸 Instagram</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="phoneField" style="display: none;">
+                    <label for="parentPhone">Телефон родителя *</label>
+                    <input type="tel" id="parentPhone" name="parentPhone" placeholder="+374 44 171579">
+                </div>
+
+                <div class="form-group" id="telegramField" style="display: none;">
+                    <label for="parentTelegram">Telegram (@username) *</label>
+                    <input type="text" id="parentTelegram" name="parentTelegram" placeholder="@example">
+                </div>
+
+                <div class="form-group" id="instagramField" style="display: none;">
+                    <label for="parentInstagram">Instagram (@username) *</label>
+                    <input type="text" id="parentInstagram" name="parentInstagram" placeholder="@example">
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-submit" id="submitBtn" onclick="handleSubmit(event)">Отправить запись</button>
+                </div>
+                <button type="button" class="btn-cancel" onclick="closeModal()" style="width: 100%; margin-top: 0.75rem;">Отмена</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p><strong>ПОЛЯРИС</strong> — Детский центр развития в Ереване</p>
+        <p>Арабкир, ул. Сундукяна, 17 (недалеко от ТЦ РИО) | @polaris.yerevan | t.me/polariserevan</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">© 2024 ПОЛЯРИС. Все права защищены.</p>
+    </footer>
+
+    <script>
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToCourses() {
+            const coursesSection = document.getElementById('courses');
+            coursesSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openContact() {
+            window.open('https://t.me/sensey1983', '_blank');
+        }
+
+        // MODAL FUNCTIONS
+        function openModal(courseName = '') {
+            const modal = document.getElementById('registrationModal');
+            modal.classList.add('show');
+
+            const courseSelectGroup = document.getElementById('courseSelectGroup');
+            const courseTextGroup = document.getElementById('courseTextGroup');
+            const courseNameSelect = document.getElementById('courseName');
+            const courseText = document.getElementById('courseText');
+
+            if (courseName) {
+                // Если выбран курс - скрываем выбор, показываем текст
+                courseSelectGroup.style.display = 'none';
+                courseTextGroup.style.display = 'block';
+                courseText.textContent = courseName;
+                courseNameSelect.value = courseName;
+            } else {
+                // Если курс не выбран - показываем выбор, скрываем текст
+                courseSelectGroup.style.display = 'block';
+                courseTextGroup.style.display = 'none';
+                courseNameSelect.value = '';
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('registrationModal');
+            modal.classList.remove('show');
+        }
+
+        function updateContactField() {
+            const contactType = document.getElementById('contactType').value;
+            const phoneField = document.getElementById('phoneField');
+            const telegramField = document.getElementById('telegramField');
+            const instagramField = document.getElementById('instagramField');
+
+            // Скрываем все поля
+            phoneField.style.display = 'none';
+            telegramField.style.display = 'none';
+            instagramField.style.display = 'none';
+
+            // Показываем выбранное поле
+            if (contactType === 'phone') {
+                phoneField.style.display = 'block';
+            } else if (contactType === 'telegram') {
+                telegramField.style.display = 'block';
+            } else if (contactType === 'instagram') {
+                instagramField.style.display = 'block';
+            }
+        }
+
+        function getFormMessage() {
+            const childName = document.getElementById('childName').value;
+            const childAge = document.getElementById('childAge').value;
+            const courseName = document.getElementById('courseName').value;
+            const contactType = document.getElementById('contactType').value;
+            const parentPhone = document.getElementById('parentPhone').value;
+            const parentTelegram = document.getElementById('parentTelegram').value;
+            const parentInstagram = document.getElementById('parentInstagram').value;
+
+            // Проверяем обязательные поля
+            if (!childName || !childAge) {
+                alert('Пожалуйста, заполни:\n• Имя ребёнка\n• Возраст');
+                return null;
+            }
+
+            // Проверяем курс (если поле видимо, то оно обязательно)
+            const courseSelectGroup = document.getElementById('courseSelectGroup');
+            const courseTextGroup = document.getElementById('courseTextGroup');
+
+            if (courseSelectGroup.style.display !== 'none' && !courseName) {
+                alert('Пожалуйста, выбери курс');
+                return null;
+            }
+
+            // Если курс скрыт в тексте, значит он уже выбран при открытии
+            if (courseTextGroup.style.display !== 'none' && !courseName) {
+                alert('Пожалуйста, выбери курс');
+                return null;
+            }
+
+            // Проверяем способ связи
+            if (!contactType) {
+                alert('Пожалуйста, выбери способ связи');
+                return null;
+            }
+
+            // Проверяем контакт в зависимости от способа
+            if (contactType === 'phone' && !parentPhone) {
+                alert('Пожалуйста, введи номер телефона');
+                return null;
+            } else if (contactType === 'telegram' && !parentTelegram) {
+                alert('Пожалуйста, введи свой Telegram');
+                return null;
+            } else if (contactType === 'instagram' && !parentInstagram) {
+                alert('Пожалуйста, введи свой Instagram');
+                return null;
+            }
+
+            // Формируем сообщение
+            let message = `📝 Новая запись на курс:\n\n`;
+            message += `👧 Имя ребёнка: ${childName}\n`;
+            message += `🎂 Возраст: ${childAge} лет\n`;
+            message += `📚 Курс: ${courseName}\n`;
+
+            message += `\n📞 Способ связи:\n`;
+            if (contactType === 'phone') {
+                message += `📱 Телефон: ${parentPhone}\n`;
+            } else if (contactType === 'telegram') {
+                message += `💬 Telegram: ${parentTelegram}\n`;
+            } else if (contactType === 'instagram') {
+                message += `📸 Instagram: ${parentInstagram}\n`;
+            }
+
+            return message;
+        }
+
+        function submitToTelegram(event) {
+            event.preventDefault();
+            const message = getFormMessage();
+            if (!message) return;
+
+            // Кодируем сообщение для URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Открываем Telegram с предзаполненным сообщением
+            window.open(`https://t.me/sensey1983?text=${encodedMessage}`, '_blank');
+
+            // Очищаем форму
+            document.getElementById('registrationModal').querySelector('form').reset();
+            closeModal();
+        }
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+
+            const childName = document.getElementById('childName').value;
+            const childAge = document.getElementById('childAge').value;
+            const courseName = document.getElementById('courseName').value;
+            const contactType = document.getElementById('contactType').value;
+            const parentPhone = document.getElementById('parentPhone').value;
+            const parentTelegram = document.getElementById('parentTelegram').value;
+            const parentInstagram = document.getElementById('parentInstagram').value;
+
+            // Проверяем обязательные поля
+            if (!childName || !childAge) {
+                alert('Пожалуйста, заполни:\n• Имя ребёнка\n• Возраст');
+                return;
+            }
+
+            if (!courseName) {
+                alert('Пожалуйста, выбери курс');
+                return;
+            }
+
+            if (!contactType) {
+                alert('Пожалуйста, выбери способ связи');
+                return;
+            }
+
+            // Проверяем контакт в зависимости от способа
+            if (contactType === 'phone' && !parentPhone) {
+                alert('Пожалуйста, введи номер телефона');
+                return;
+            } else if (contactType === 'telegram' && !parentTelegram) {
+                alert('Пожалуйста, введи свой Telegram');
+                return;
+            } else if (contactType === 'instagram' && !parentInstagram) {
+                alert('Пожалуйста, введи свой Instagram');
+                return;
+            }
+
+            // Отключаем кнопку и показываем статус
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Отправляю...';
+
+            try {
+                // Отправляем запрос на сервер
+                const response = await fetch('/api/send-message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        childName,
+                        childAge,
+                        courseName,
+                        contactType,
+                        parentPhone: parentPhone || null,
+                        parentTelegram: parentTelegram || null,
+                        parentInstagram: parentInstagram || null
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    alert('✅ Спасибо за запись!\n\nМы получили вашу заявку и скоро свяжемся с вами.');
+                    document.getElementById('registrationModal').querySelector('form').reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                    closeModal();
+                } else {
+                    alert('❌ Ошибка при отправке: ' + (result.error || 'Пожалуйста, попробуй позже'));
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            } catch (error) {
+                alert('❌ Ошибка: ' + error.message + '\n\nПожалуйста, попробуй позже или напиши нам в Telegram');
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        }
+
+        function submitToInstagram(event) {
+            event.preventDefault();
+            const message = getFormMessage();
+            if (!message) return;
+
+            // Копируем в буфер обмена
+            navigator.clipboard.writeText(message).then(() => {
+                alert('✅ Сообщение скопировано! Теперь откроется Instagram. Отправь это сообщение в ДМ @polaris.yerevan');
+
+                // Открываем Instagram профиль
+                window.open('https://instagram.com/polaris.yerevan', '_blank');
+
+                // Очищаем форму
+                document.getElementById('registrationModal').querySelector('form').reset();
+                closeModal();
+            }).catch(() => {
+                alert('Скопируй это сообщение вручную и отправь в ДМ @polaris.yerevan:\n\n' + message);
+            });
+        }
+
+        // Закрываем модал при клике на фон
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('registrationModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
+
+        // Делаем курсы кликабельными
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseCards = document.querySelectorAll('.course-card');
+            courseCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const courseName = this.querySelector('h3').textContent;
+                    openModal(courseName);
+                });
+            });
+        });
+
+        // Smooth scroll for header links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

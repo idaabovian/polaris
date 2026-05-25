@@ -1,0 +1,14 @@
+{
+  "name": "polaris-landing",
+  "version": "1.0.0",
+  "description": "ПОЛЯРИС - детский центр развития",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Build complete'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}

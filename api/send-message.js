@@ -17,10 +17,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { childName, childAge, courseName, contactType, parentPhone, parentTelegram, parentInstagram } = req.body;
+    const { childName, childAge, courseName, parentPhone } = req.body;
 
     // Валидация
-    if (!childName || !childAge || !contactType) {
+    if (!childName || !childAge || !courseName || !parentPhone) {
       return res.status(400).json({ error: 'Заполните все обязательные поля' });
     }
 
@@ -28,16 +28,8 @@ export default async function handler(req, res) {
     let message = `📝 <b>Новая запись на курс:</b>\n\n`;
     message += `👧 <b>Имя ребёнка:</b> ${childName}\n`;
     message += `🎂 <b>Возраст:</b> ${childAge} лет\n`;
-    message += `📚 <b>Курс:</b> ${courseName || 'Не выбран'}\n`;
-    message += `\n📞 <b>Способ связи:</b>\n`;
-
-    if (contactType === 'phone') {
-      message += `📱 Телефон: <code>${parentPhone}</code>\n`;
-    } else if (contactType === 'telegram') {
-      message += `💬 Telegram: <code>${parentTelegram}</code>\n`;
-    } else if (contactType === 'instagram') {
-      message += `📸 Instagram: <code>${parentInstagram}</code>\n`;
-    }
+    message += `📚 <b>Курс:</b> ${courseName}\n`;
+    message += `📱 <b>Контактный номер:</b> <code>${parentPhone}</code>\n`;
 
     // Отправляем в Telegram через Bot API
     const botToken = process.env.TELEGRAM_BOT_TOKEN;

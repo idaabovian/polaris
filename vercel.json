@@ -1,23 +1,23 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "polaris_landing.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/polaris_landing.html"
-    }
-  ]
+    "version": 2,
+    "builds": [
+          {
+                  "src": "api/**/*.js",
+                  "use": "@vercel/node"
+          },
+          {
+                  "src": "polaris_landing.html",
+                  "use": "@vercel/static"
+          }
+    ],
+    "routes": [
+          {
+                  "src": "/api/send-message",
+                  "dest": "/api/send-message.js"
+          },
+          {
+                  "src": "/(.*)",
+                  "dest": "/polaris_landing.html"
+          }
+    ]
 }
